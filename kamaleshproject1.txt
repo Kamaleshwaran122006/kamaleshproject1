@@ -1,0 +1,90 @@
+class Disaster:
+    def __init__(self, name, location, severity):
+        self.name = name
+        self.location = location
+        self.severity = severity
+
+    def __str__(self):
+        return f"Disaster: {self.name}, Location: {self.location}, Severity: {self.severity}"
+
+
+class Resource:
+    def __init__(self, name, quantity):
+        self.name = name
+        self.quantity = quantity
+
+    def __str__(self):
+        return f"Resource: {self.name}, Quantity: {self.quantity}"
+
+
+class DisasterManagementSystem:
+    def __init__(self):
+        self.disasters = []
+        self.resources = []
+
+    def add_disaster(self, disaster):
+        self.disasters.append(disaster)
+        print(f'Disaster "{disaster.name}" added.')
+
+    def view_disasters(self):
+        if not self.disasters:
+            print("No disasters reported.")
+            return
+        print("Reported Disasters:")
+        for disaster in self.disasters:
+            print(disaster)
+
+    def add_resource(self, resource):
+        self.resources.append(resource)
+        print(f'Resource "{resource.name}" added.')
+
+    def view_resources(self):
+        if not self.resources:
+            print("No resources available.")
+            return
+        print("Available Resources:")
+        for resource in self.resources:
+            print(resource)
+
+
+def main():
+    dms = DisasterManagementSystem()
+
+    while True:
+        print("\nDisaster Management System")
+        print("1. Add Disaster")
+        print("2. View Disasters")
+        print("3. Add Resource")
+        print("4. View Resources")
+        print("5. Exit")
+        choice = input("Choose an option: ")
+
+        if choice == '1':
+            name = input("Enter disaster name: ")
+            location = input("Enter location: ")
+            severity = input("Enter severity level: ")
+            disaster = Disaster(name, location, severity)
+            dms.add_disaster(disaster)
+
+        elif choice == '2':
+            dms.view_disasters()
+
+        elif choice == '3':
+            name = input("Enter resource name: ")
+            quantity = int(input("Enter resource quantity: "))
+            resource = Resource(name, quantity)
+            dms.add_resource(resource)
+
+        elif choice == '4':
+            dms.view_resources()
+
+        elif choice == '5':
+            print("Exiting the system.")
+            break
+
+        else:
+            print("Invalid choice. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
